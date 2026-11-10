@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="sk">
+<head>
+    <meta charset="utf-8">
+    <title>Super bezpečná stránka</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 650px;
+            margin: 40px auto;
+        }
+
+        input {
+            display: block;
+            margin: 8px 0 16px;
+            padding: 8px;
+            width: 95%;
+        }
+
+        button, a {
+            padding: 8px 12px;
+            margin-right: 8px;
+        }
+
+        .box {
+            border: 1px solid #bbb;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        pre {
+            background: #f1f1f1;
+            padding: 12px;
+            white-space: pre-wrap;
+        }
+
+        .bad {
+            color: #a00;
+        }
+
+        .good {
+            color: #075d2d;
+        }
+
+        .status-icon {
+            font-size: 2.5rem;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+<h1>Super bezpečná stránka</h1>
+<p>Demo login:</p>
+
+<form method="post">
+    <label>Username</label>
+    <input name="username" value="{{ username }}" required>
+    <label>Password</label>
+    <input name="password" type="password">
+    <button type="submit">Login</button>
+</form>
+
+{% if result %}
+<div class="box">
+    <h2 class="{{ 'good' if success else 'bad' }}">
+        <span class="status-icon">{{ '✓' if success else '✗' }}</span>
+        {{ result }}
+    </h2>
+</div>
+{% endif %}
+
+<div class="box">
+    <strong>Demo účet:</strong> rudolf.servatka / 123<br>
+    <strong>SQL inject:</strong>
+    <code>' OR '1'='1' --</code><br>
+    <code>' UNION SELECT 'jensen','huang' --</code>
+</div>
+</body>
+</html>
